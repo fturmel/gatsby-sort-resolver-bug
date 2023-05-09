@@ -17,10 +17,9 @@ exports.createResolvers = ({ createResolvers }) => {
 					const { order } = await context.nodeModel.findOne({
 						type: `ContentJson`,
 					});
-
 					const { relativePath } = await context.nodeModel.getNodeById({ id: source.parent });
-
-					return order.indexOf(relativePath) ?? 999;
+					const index = order.indexOf(relativePath);
+					return index !== -1 ? index : 999;
 				},
 			},
 		},
